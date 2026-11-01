@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="/favicon.ico?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Заказы по этапам — TreeLife Stimulation</title>
+<style>
+:root{--teal:#1f7a7a;--teal-d:#165c5c;--bg:#f3f7f7;--card:#fff;--line:#dbe5e5;--txt:#1d2b2b;--mut:#6b7d7d;--red:#c0392b;--amber:#b7791f;--green:#2f855a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.top{background:var(--teal-d);color:#fff}
+.top__row{max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.top h1{margin:0;font-size:18px;font-weight:600;flex:1;min-width:200px}
+.top small{display:block;font-weight:400;font-size:13px;color:#cfe6e6}
+.top a,.top button{color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer;text-decoration:none}
+.top a:hover,.top button:hover{background:rgba(255,255,255,.22)}
+.tabs{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;gap:4px;overflow-x:auto}
+.tabs button{background:none;color:#cfe6e6;border:0;padding:12px 16px;font:inherit;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button.on{color:#fff;border-bottom-color:#fff}
+.badge{display:inline-block;background:var(--red);color:#fff;border-radius:10px;font-size:12px;padding:0 7px;margin-left:6px}
+.badge.zero{background:rgba(255,255,255,.25)}
+main{max-width:1180px;margin:0 auto;padding:22px 20px 60px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+input,select,textarea{font:inherit;padding:9px 11px;border:1px solid #c9d6d6;border-radius:8px;background:#fff;color:var(--txt);max-width:100%}
+textarea{width:100%;min-height:64px;resize:vertical}
+.btn{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:9px 16px;font:inherit;cursor:pointer}
+.btn:hover{background:var(--teal-d)}
+.btn:disabled{opacity:.55;cursor:default}
+.btn.ghost{background:#fff;color:var(--teal);border:1px solid var(--teal)}
+.btn.ghost:hover{background:#eef6f6}
+.btn.red{background:#fff;color:var(--red);border:1px solid var(--red)}
+.btn.red:hover{background:#fdf1ef}
+.btn.sm{padding:5px 10px;font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.card h2{margin:0 0 12px;font-size:17px}
+.o{padding:0;overflow:hidden}
+.o__head{display:grid;grid-template-columns:70px 1fr auto;gap:6px 14px;padding:14px 16px;cursor:pointer;align-items:start}
+.o__head:hover{background:#fafcfc}
+.o__num{font-weight:700;font-size:16px}
+.o__who b{font-weight:600}
+.o__sub{color:var(--mut);font-size:13px}
+.o__right{text-align:right}
+.o__sum{font-weight:700}
+.chip{display:inline-block;border-radius:10px;padding:1px 9px;font-size:12px;background:#e7f0ff;color:#2b5cb8;white-space:nowrap}
+.chip.invoice{background:#efe9ff;color:#5b3fb0}.chip.payment{background:#fff3d9;color:var(--amber)}
+.chip.receipt{background:#e3f5ea;color:var(--green)}.chip.shipping{background:#e0f4f4;color:var(--teal-d)}
+.chip.shipped{background:#e0f4f4;color:var(--teal-d)}.chip.done{background:#e3f5ea;color:var(--green)}.chip.cancelled{background:#fdecea;color:var(--red)}
+.chip.co{background:#fff3d9;color:var(--amber)}
+.todo{grid-column:2/-1;font-size:14px;color:var(--teal-d);background:#eef6f6;border-radius:8px;padding:6px 10px}
+.o__body{border-top:1px solid var(--line);padding:16px;background:#fcfefe}
+.hint{background:#fff8e6;border:1px solid #f0dca0;border-radius:10px;padding:10px 14px;color:#6b5510;font-size:14px;margin-bottom:14px}
+.form{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-bottom:14px}
+.form label{display:block;font-size:13px;color:var(--mut);margin-bottom:4px}
+.form input,.form select{width:100%}
+.form .wide{grid-column:1/-1}
+.form .need input{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,57,43,.12)}
+.act{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.items{margin:0 0 12px;padding-left:18px}
+.log{font-size:13px;color:var(--mut);margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.log div{padding:2px 0}
+.empty{padding:34px;text-align:center;color:var(--mut)}
+.zones{display:flex;gap:10px;flex-wrap:wrap}
+.zones label{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--txt);margin:0}
+.staff{display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:center}
+.code{font-size:22px;letter-spacing:4px;font-weight:700;color:var(--teal-d)}
+.toast{position:fixed;right:18px;bottom:18px;background:var(--teal-d);color:#fff;padding:11px 16px;border-radius:10px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;max-width:80vw;z-index:9}
+.toast.show{opacity:1;transform:none}
+.toast.err{background:var(--red)}
+.denied{max-width:440px;margin:15vh auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px}
+.denied a{color:var(--teal)}
+@media(max-width:640px){.o__head{grid-template-columns:54px 1fr}.o__right{grid-column:2;text-align:left}.todo{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var root = document.getElementById('root');
+  var D = null;                       // данные с сервера
+  var st = { tab: 'all', q: '', open: null, logs: {}, staffForm: null };
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function money(n) { return (Number(n) || 0).toLocaleString('ru-RU') + ' ₽'; }
+  function phoneShow(p) { return /^7\d{10}$/.test(p) ? '+7 ' + p.slice(1, 4) + ' ' + p.slice(4, 7) + '-' + p.slice(7, 9) + '-' + p.slice(9) : (p ? '+' + p : '—'); }
+  function fdt(iso) { var d = new Date(iso); return isNaN(d) ? '—' : d.toLocaleDateString('ru-RU') + ' ' + d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }); }
+  function ago(iso) {
+    var m = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+    if (isNaN(m)) return '';
+    if (m < 60) return m + ' мин';
+    if (m < 1440) return Math.round(m / 60) + ' ч';
+    return Math.round(m / 1440) + ' дн';
+  }
+  function itemsText(o) { return (o.items || []).map(function (i) { return i.name + (i.qty > 1 ? ' × ' + i.qty : ''); }).join(', ') || '—'; }
+  var toastT;
+  function toast(msg, bad) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.className = 'toast show' + (bad ? ' err' : '');
+    clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2800);
+  }
+  function stage(code) { return (D.stages || []).filter(function (s) { return s.code === code; })[0]; }
+  function label(code) { var s = (D.statuses || []).filter(function (x) { return x.code === code; })[0]; return s ? s.label : code; }
+
+  function api(body, qs) {
+    var h = { 'X-Requested-With': 'fetch' };
+    if (body) h['Content-Type'] = 'application/json';
+    return fetch('pipeline_api.php' + (qs || ''), { method: body ? 'POST' : 'GET', credentials: 'same-origin', headers: h, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().then(function (j) { j._status = r.status; return j; }); });
+  }
+  function load() {
+    return api().then(function (d) {
+      if (!d || !d.success) { var e = new Error('load'); e.status = d && d._status; throw e; }
+      D = d;
+    });
+  }
+  function denied(msg) {
+    root.innerHTML = '<div class="denied"><h2>Доступ закрыт</h2><p>' + msg + '</p><a href="/">На главную</a></div>';
+  }
+
+  root.innerHTML = '<div class="denied"><h2>Проверка доступа…</h2></div>';
+  load().then(function () { paint(); setInterval(refresh, 20000); })
+    .catch(function (e) {
+      denied(e && (e.status === 403 || e.status === 401)
+        ? 'Войдите через личный кабинет на сайте под аккаунтом сотрудника. Права выдаёт администратор.'
+        : 'Не удалось загрузить данные. Попробуйте обновить страницу.');
+    });
+
+  /* изменения коллег и бота подтягиваются сами, пока вы не печатаете */
+  function refresh() {
+    if (document.hidden || st.open || st.staffForm) return;   // не сбиваем открытую карточку и несохранённую форму
+    var a = document.activeElement, t = a && a.tagName;
+    if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') return;
+    load().then(paint).catch(function () {});
+  }
+
+  /* ---------- каркас ---------- */
+  function visibleStages() {
+    return (D.stages || []).filter(function (s) { return D.me.zones.indexOf(s.code) >= 0; });
+  }
+  function paint() {
+    var tabs = '<button data-a="tab" data-t="all" class="' + (st.tab === 'all' ? 'on' : '') + '">' + (D.me.all ? 'Все заказы' : 'Мои заказы') + '</button>';
+    visibleStages().forEach(function (s) {
+      var n = D.counts[s.code] || 0;
+      tabs += '<button data-a="tab" data-t="' + s.code + '" class="' + (st.tab === s.code ? 'on' : '') + '">' + esc(s.label) + '<span class="badge' + (n ? '' : ' zero') + '">' + n + '</span></button>';
+    });
+    if (D.me.all) {
+      ['shipped', 'done', 'cancelled'].forEach(function (c) {
+        tabs += '<button data-a="tab" data-t="' + c + '" class="' + (st.tab === c ? 'on' : '') + '">' + esc(label(c)) + '<span class="badge zero">' + (D.counts[c] || 0) + '</span></button>';
+      });
+    }
+    if (D.me.admin) tabs += '<button data-a="tab" data-t="staff" class="' + (st.tab === 'staff' ? 'on' : '') + '">Сотрудники</button>';
+
+    root.innerHTML =
+      '<div class="top"><div class="top__row"><h1>Заказы по этапам<small>' + esc(D.me.name || '') + ' · ' + esc(D.me.label) + '</small></h1>' +
+      (D.me.admin ? '<a href="admin.html">Админ-панель</a>' : '') + '<a href="/">На сайт</a></div>' +
+      '<div class="tabs">' + tabs + '</div></div><main id="view"></main>';
+    paintView();
+  }
+
+  function paintView() {
+    var v = document.getElementById('view');
+    v.innerHTML = st.tab === 'staff' ? staffView() : ordersView();
+  }
+
+  /* ---------- заказы ---------- */
+  function filtered() {
+    var q = st.q.trim().toLowerCase();
+    return (D.orders || []).filter(function (o) {
+      if (st.tab !== 'all' && o.status !== st.tab) return false;
+      if (!q) return true;
+      return (String(o.id) + ' ' + o.name + ' ' + (o.email || '') + ' ' + (o.agent || '') + ' ' + o.phone + ' ' + itemsText(o) + ' ' + o.invoice_no + ' ' + o.waybill_no).toLowerCase().indexOf(q) >= 0;
+    });
+  }
+
+  function ordersView() {
+    var list = filtered();
+    var head = '<div class="toolbar"><input id="q" placeholder="Поиск: №, имя, телефон, товар" value="' + esc(st.q) + '" style="min-width:260px"></div>';
+    if (st.tab !== 'all' && stage(st.tab)) {
+      var s = stage(st.tab);
+      head += '<div class="hint"><b>' + esc(s.label) + ': ' + esc(s.action) + '.</b> ' + esc(s.hint) + '</div>';
+    }
+    if (!list.length) return head + '<div class="card empty">Здесь пока пусто. Новые заказы появятся сами.</div>';
+    return head + list.map(orderCard).join('');
+  }
+
+  function orderCard(o) {
+    var open = st.open === o.id;
+    var s = stage(o.status);
+    var h =
+      '<div class="card o"><div class="o__head" data-a="open" data-id="' + o.id + '">' +
+      '<div class="o__num">№' + o.id + '</div>' +
+      '<div class="o__who"><b>' + esc(o.name) + '</b> <span class="chip ' + esc(o.status) + '">' + esc(label(o.status)) + '</span>' +
+      (o.buyer === 'company' ? ' <span class="chip co">юрлицо</span>' : '') +
+      '<div class="o__sub">' + esc(phoneShow(o.phone)) + ' · ' + esc(itemsText(o)) + '</div></div>' +
+      '<div class="o__right"><div class="o__sum">' + money(o.total) + '</div><div class="o__sub">' + esc(o.source) + ' · на этапе ' + esc(ago(o.stage_at || o.date)) + '</div></div>' +
+      (o.action ? '<div class="todo">👉 ' + esc(o.action) + '</div>' : '') +
+      '</div>';
+    if (open) h += orderBody(o, s);
+    return h + '</div>';
+  }
+
+  function orderBody(o, s) {
+    var f = function (id, lab, val, extra) { return '<div' + (extra && extra.cls ? ' class="' + extra.cls + '"' : '') + '><label>' + lab + '</label><input id="f_' + id + '" value="' + esc(val) + '"' + (extra && extra.ph ? ' placeholder="' + esc(extra.ph) + '"' : '') + '></div>'; };
+    var needInv = s && s.need === 'invoice_no', needWay = s && s.need === 'waybill_no';
+    var h = '<div class="o__body" data-o="' + o.id + '">';
+    if (s) h += '<div class="hint"><b>' + esc(o.action) + '.</b> ' + esc(s.hint) + '</div>';
+    h += '<ul class="items">' + (o.items || []).map(function (i) { return '<li>' + esc(i.name) + ' × ' + (i.qty || 1) + ' — ' + money((i.price || 0) * (i.qty || 1)) + '</li>'; }).join('') + '</ul>';
+    h += '<div class="form">' +
+      f('last_name', 'Фамилия', o.last_name || '') +
+      f('first_name', 'Имя', o.first_name || (o.last_name ? '' : o.name)) +
+      f('middle_name', 'Отчество', o.middle_name || '') +
+      f('phone', 'Телефон', phoneShow(o.phone)) +
+      f('email', 'Email', o.email || '') +
+      f('cdek', 'Адрес и пункт СДЭК', o.cdek || '', { cls: 'wide' }) +
+      f('agent', 'Агент', o.agent || '') +
+      '<div><label>Покупатель</label><select id="f_buyer"><option value="person"' + (o.buyer !== 'company' ? ' selected' : '') + '>Физлицо</option><option value="company"' + (o.buyer === 'company' ? ' selected' : '') + '>Юрлицо</option></select></div>' +
+      f('invoice_no', 'Номер счёта', o.invoice_no, { cls: needInv ? 'need' : '' }) +
+      f('waybill_no', 'Номер накладной', o.waybill_no, { cls: needWay ? 'need' : '' }) +
+      f('pvz', 'Пункт выдачи (ПВЗ)', o.pvz) +
+      '<div class="wide"><label>Реквизиты юрлица</label><textarea id="f_requisites" placeholder="Название, ИНН, КПП, адрес, банк">' + esc(o.requisites) + '</textarea></div>' +
+      '<div class="wide"><label>Комментарий</label><textarea id="f_comment">' + esc(o.comment) + '</textarea></div></div>';
+    h += '<div class="act">';
+    if (s) h += '<button class="btn" data-a="advance" data-id="' + o.id + '">' + esc(s.btn) + '</button>';
+    else if (o.status === 'shipped') h += '<button class="btn" data-a="advance" data-id="' + o.id + '">✅ Заказ выполнен</button>';
+    h += '<button class="btn ghost" data-a="save" data-id="' + o.id + '">Сохранить данные</button>';
+    var prev = prevOf(o.status);
+    if (prev && o.status !== 'cancelled') h += '<button class="btn ghost" data-a="back" data-id="' + o.id + '">↩ Вернуть: ' + esc(label(prev)) + '</button>';
+    if (o.can_cancel) h += '<button class="btn red" data-a="cancel" data-id="' + o.id + '">Отменить заказ</button>';
+    if (D.me.admin) {
+      h += '<select id="f_status">' + (D.statuses || []).map(function (x) { return '<option value="' + x.code + '"' + (x.code === o.status ? ' selected' : '') + '>' + esc(x.label) + '</option>'; }).join('') + '</select>' +
+           '<button class="btn ghost sm" data-a="setstatus" data-id="' + o.id + '">Задать статус вручную</button>';
+    }
+    h += '</div>';
+    h += '<div class="log" id="log_' + o.id + '">' + logHtml(o.id) + '</div></div>';
+    return h;
+  }
+
+  function prevOf(code) {
+    var codes = (D.stages || []).map(function (s) { return s.code; });
+    if (code === 'shipped') return 'shipping';
+    if (code === 'done') return 'shipped';
+    var i = codes.indexOf(code);
+    return i > 0 ? codes[i - 1] : null;
+  }
+
+  function logHtml(id) {
+    var l = st.logs[id];
+    if (!l) return 'История загружается…';
+    if (!l.length) return 'История пуста.';
+    return '<b>История</b>' + l.map(function (r) {
+      var move = r.from === null ? 'создан' : (r.same ? 'правка' : esc(r.from) + ' → ' + esc(r.to));
+      return '<div>' + fdt(r.date) + ' · ' + esc(r.by || '—') + ': ' + move + (r.note ? ' (' + esc(r.note) + ')' : '') + '</div>';
+    }).join('');
+  }
+  function loadLog(id) {
+    api(null, '?action=history&id=' + id).then(function (d) {
+      st.logs[id] = d && d.success ? d.log : [];
+      var el = document.getElementById('log_' + id);
+      if (el) el.innerHTML = logHtml(id);
+    });
+  }
+
+  function formFields() {
+    var g = function (id) { var e = document.getElementById('f_' + id); return e ? e.value : ''; };
+    return { last_name: g('last_name'), first_name: g('first_name'), middle_name: g('middle_name'), email: g('email'), cdek: g('cdek'), agent: g('agent'), phone: g('phone'), buyer_type: g('buyer'), invoice_no: g('invoice_no'), waybill_no: g('waybill_no'), pvz: g('pvz'), requisites: g('requisites') };
+  }
+
+  /* ---------- сотрудники (только админ) ---------- */
+  function staffView() {
+    var f = st.staffForm;
+    var h = '<div class="toolbar"><button class="btn" data-a="staffnew">+ Добавить сотрудника</button></div>';
+    h += '<div class="hint">Сотрудник входит на сайт под своим аккаунтом (он должен сначала зарегистрироваться) и открывает эту страницу. ' +
+         'Чтобы заказы приходили и в бот MAX, нажмите «Код для бота» и попросите сотрудника отправить боту сообщение вида <b>/staff 123456</b>.</div>';
+    if (f) h += staffForm(f);
+    var list = D.staff || [];
+    if (!list.length) return h + '<div class="card empty">Сотрудников пока нет. Администраторы видят всё без добавления.</div>';
+    return h + list.map(function (s) {
+      var z = s.zones.indexOf('all') >= 0 ? 'Вся база заказов' : s.zones.map(label).join(', ');
+      return '<div class="card"><div class="staff"><div><b>' + esc(s.name) + '</b> ' + (s.phone ? '<span class="o__sub">' + esc(s.phone) + '</span>' : '') +
+        '<div class="o__sub">Доступ: ' + esc(z) + ' · сайт: ' + (s.site ? 'подключён' : 'нет') + ' · бот MAX: ' + (s.bot ? 'подключён' : 'нет') + '</div>' +
+        (s.code ? '<div>Код для бота: <span class="code">' + esc(s.code) + '</span> <span class="o__sub">(24 часа)</span></div>' : '') + '</div>' +
+        '<div class="act"><button class="btn ghost sm" data-a="staffedit" data-id="' + s.id + '">Изменить</button>' +
+        '<button class="btn ghost sm" data-a="staffcode" data-id="' + s.id + '">Код для бота</button>' +
+        (s.bot ? '<button class="btn ghost sm" data-a="staffunbind" data-id="' + s.id + '">Отвязать бота</button>' : '') +
+        '<button class="btn red sm" data-a="staffdel" data-id="' + s.id + '">Удалить</button></div></div></div>';
+    }).join('');
+  }
+  function staffForm(f) {
+    var all = f.zones.indexOf('all') >= 0;
+    return '<div class="card"><h2>' + (f.id ? 'Изменить сотрудника' : 'Новый сотрудник') + '</h2><div class="form">' +
+      '<div><label>Имя</label><input id="s_name" value="' + esc(f.name) + '"></div>' +
+      '<div><label>Телефон аккаунта на сайте</label><input id="s_phone" value="' + esc(f.phone) + '" placeholder="+7 928 000-00-00"></div></div>' +
+      '<label style="font-size:13px;color:var(--mut)">Зоны ответственности</label><div class="zones" style="margin:6px 0 12px">' +
+      (D.stages || []).map(function (s) { return '<label><input type="checkbox" class="zone" value="' + s.code + '"' + (f.zones.indexOf(s.code) >= 0 ? ' checked' : '') + (all ? ' disabled' : '') + '> ' + esc(s.label) + '</label>'; }).join('') +
+      '<label><input type="checkbox" id="s_all"' + (all ? ' checked' : '') + '> <b>Вся база заказов</b></label></div>' +
+      '<div class="act"><button class="btn" data-a="staffsave">Сохранить</button><button class="btn ghost" data-a="staffcancel">Отмена</button></div></div>';
+  }
+
+  /* ---------- события ---------- */
+  function post(body, ok) {
+    return api(body).then(function (r) {
+      if (!r || !r.success) {
+        toast((r && r.message) || 'Не удалось выполнить', true);
+        if (r && r.need) { var e = document.getElementById('f_' + r.need); if (e) { e.focus(); } }
+        return r;
+      }
+      if (ok) toast(ok);
+      return load().then(function () { paint(); return r; });
+    }).catch(function () { toast('Нет связи с сервером', true); });
+  }
+
+  root.addEventListener('input', function (e) {
+    if (e.target.id === 'q') {
+      st.q = e.target.value;
+      var v = document.getElementById('view'), pos = e.target.selectionStart;
+      paintView();
+      var q = document.getElementById('q'); q.focus(); try { q.setSelectionRange(pos, pos); } catch (x) {}
+    }
+  });
+  root.addEventListener('change', function (e) {
+    if (e.target.id === 's_all') {
+      Array.prototype.forEach.call(document.querySelectorAll('.zone'), function (c) { c.disabled = e.target.checked; if (e.target.checked) c.checked = false; });
+    }
+  });
+
+  root.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-a]');
+    if (!t) return;
+    var a = t.getAttribute('data-a'), id = Number(t.getAttribute('data-id')) || 0;
+
+    if (a === 'tab') { st.tab = t.getAttribute('data-t'); st.open = null; paint(); return; }
+    if (a === 'open') {
+      st.open = st.open === id ? null : id;
+      paintView();
+      if (st.open) loadLog(id);
+      return;
+    }
+    if (a === 'advance') {
+      t.disabled = true;
+      post({ action: 'advance', id: id, fields: formFields() }, 'Этап выполнен').then(function (r) {
+        t.disabled = false;
+        if (r && r.success) { st.open = null; paintView(); }
+      });
+      return;
+    }
+    if (a === 'save') {
+      var cm = document.getElementById('f_comment');
+      post({ action: 'save', id: id, fields: formFields(), comment: cm ? cm.value : '' }, 'Сохранено');
+      return;
+    }
+    if (a === 'back') {
+      var why = window.prompt('Почему возвращаете заказ на предыдущий этап? Напишите причину:');
+      if (why === null) return;
+      post({ action: 'back', id: id, note: why }, 'Заказ возвращён');
+      return;
+    }
+    if (a === 'cancel') {
+      if (!window.confirm('Отменить заказ №' + id + '? Клиент из бота получит уведомление.')) return;
+      post({ action: 'cancel', id: id, note: 'Заказ отменён' }, 'Заказ отменён');
+      return;
+    }
+    if (a === 'setstatus') { post({ action: 'set_status', id: id, status: document.getElementById('f_status').value }, 'Статус изменён'); return; }
+
+    /* сотрудники */
+    if (a === 'staffnew') { st.staffForm = { id: 0, name: '', phone: '', zones: [] }; paintView(); return; }
+    if (a === 'staffedit') {
+      var s = (D.staff || []).filter(function (x) { return x.id === id; })[0];
+      if (s) { st.staffForm = { id: s.id, name: s.name, phone: s.phone, zones: s.zones.slice() }; paintView(); }
+      return;
+    }
+    if (a === 'staffcancel') { st.staffForm = null; paintView(); return; }
+    if (a === 'staffsave') {
+      var zones = Array.prototype.filter.call(document.querySelectorAll('.zone'), function (c) { return c.checked; }).map(function (c) { return c.value; });
+      if (document.getElementById('s_all').checked) zones = ['all'];
+      post({ action: 'staff_save', id: st.staffForm.id, name: document.getElementById('s_name').value, phone: document.getElementById('s_phone').value, zones: zones }, 'Сотрудник сохранён')
+        .then(function (r) { if (r && r.success) { st.staffForm = null; paintView(); } });
+      return;
+    }
+    if (a === 'staffcode') { post({ action: 'staff_code', id: id }, 'Код создан. Он действует 24 часа'); return; }
+    if (a === 'staffunbind') { if (window.confirm('Отвязать бота MAX от этого сотрудника?')) post({ action: 'staff_unbind', id: id }, 'Бот отвязан'); return; }
+    if (a === 'staffdel') { if (window.confirm('Удалить сотрудника? Доступ к заказам пропадёт сразу.')) post({ action: 'staff_delete', id: id }, 'Сотрудник удалён'); return; }
+  });
+})();
+</script>
+</body>
+</html>

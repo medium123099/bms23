@@ -1,0 +1,101 @@
+/* =========================================================
+   TreeLife Stimulation — product.css (страницы аппаратов)
+   Подключается после catalog.css:
+   <link rel="stylesheet" href="css/catalog.css">
+   <link rel="stylesheet" href="css/product.css">
+   ========================================================= */
+
+.pd-hero {
+  padding: 28px 0 64px;
+  background:
+    radial-gradient(900px 340px at 85% -10%, var(--surface-3), transparent 70%),
+    linear-gradient(180deg, var(--surface-2), var(--white));
+  border-bottom: 1px solid var(--border-c);
+}
+
+.pd-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.pd-media {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 5 / 4;
+  padding: 28px;
+  border: 1px solid var(--border-c);
+  border-radius: 16px;
+  background: linear-gradient(160deg, var(--white), var(--surface-3));
+  box-shadow: var(--shadow);
+}
+.pd-media img { width: 100%; height: 100%; object-fit: contain; }
+.pd-media.is-empty { min-height: 320px; }
+.pd-media .product-card__badge { top: 18px; left: 18px; }
+
+.pd-info h1 { font-size: clamp(32px, 4vw, 46px); margin-bottom: 12px; }
+.pd-lead { font-size: 18px; margin: 0 0 22px; }
+.pd-info .product-card__specs { margin-bottom: 20px; }
+.pd-info .check-list { margin-bottom: 26px; }
+
+.pd-buy {
+  display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
+  padding: 20px 22px;
+  border: 1px solid var(--teal);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.pd-price { font-family: var(--font-head); font-size: 34px; font-weight: 500; color: var(--text-strong); line-height: 1; }
+.pd-price small { font-family: var(--font-body); font-size: 16px; color: var(--teal); }
+.pd-buy__buttons { display: flex; gap: 10px; flex-wrap: wrap; flex: 1; justify-content: flex-end; }
+.pd-note { margin: 12px 4px 0; font-size: 13px; color: var(--teal); }
+
+/* ---------- о аппарате ---------- */
+
+.pd-about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.pd-about h2 { font-size: clamp(26px, 3vw, 34px); }
+.pd-about p { margin: 0 0 14px; }
+
+.spec-table {
+  width: 100%; border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border-c);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.spec-table th, .spec-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border-c); font-size: 15px; }
+.spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: 0; }
+.spec-table th { width: 42%; color: var(--teal); font-weight: 500; background: var(--surface-2); }
+
+/* ---------- другие модели ---------- */
+
+.other-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.other-card {
+  display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: center;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border-c);
+  border-radius: 12px;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.other-card:hover { border-color: var(--teal); box-shadow: var(--shadow); transform: translateY(-2px); }
+.other-card__img {
+  height: 110px; display: flex; align-items: center; justify-content: center;
+  border-radius: 9px; background: linear-gradient(160deg, var(--surface-2), var(--surface-3));
+}
+.other-card__img img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+.other-card h3 { font-size: 21px; margin-bottom: 4px; }
+.other-card p { margin: 0 0 6px; font-size: 14px; color: var(--teal); }
+.other-card strong { font-family: var(--font-head); font-weight: 500; color: var(--text-strong); }
+
+@media (max-width: 960px) {
+  .pd-grid, .pd-about { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 640px) {
+  .other-grid { grid-template-columns: 1fr; }
+  .other-card { grid-template-columns: 110px 1fr; }
+  .pd-buy__buttons { justify-content: stretch; }
+  .pd-buy__buttons .btn { flex: 1; }
+}

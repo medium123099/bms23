@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("tl-theme");
+      if (!t) {
+        var save = !!((navigator.connection || navigator.webkitConnection || navigator.mozConnection || {}).saveData);
+        var sys = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        t = (save || sys) ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+  </script>
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+  <link rel="shortcut icon" href="/favicon.ico?v=2">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Мастера TreeLife — TreeLife Stimulation</title>
+
+  <meta
+    name="description"
+    content="Мастера, которые работают на аппаратах TreeLife и методике БМС. Найдите специалиста в вашем городе."
+  >
+  <link rel="canonical" href="https://bms23.ru/masters">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TreeLife Stimulation">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://bms23.ru/masters">
+  <meta property="og:title" content="Мастера TreeLife">
+  <meta property="og:description" content="Мастера, которые работают на аппаратах TreeLife и методике БМС. Найдите специалиста в вашем городе.">
+  <meta property="og:image" content="https://bms23.ru/assets/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- шрифты грузятся асинхронно: если Google Fonts недоступны/медленные
+       (блокировки, слабая сеть), страница всё равно открывается сразу,
+       просто со шрифтом по умолчанию, без "зависания" на загрузке -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'; this.onload=null;">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+
+  <link rel="stylesheet" href="css/style.css?v=20261006">
+  <link rel="stylesheet" href="css/catalog.css?v=20261006">
+  <link rel="stylesheet" href="css/pages.css?v=20261006">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+  <link rel="stylesheet" href="css/masters.css?v=20261101">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=92555538', 'ym');
+
+    ym(92555538, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/92555538" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://bms23.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Мастера",
+      "item": "https://bms23.ru/masters"
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container site-header__row">
+
+    <a href="/" class="logo">
+      <img src="assets/logo.png" alt="TreeLife Stimulation" class="logo__mark">
+      <span>TreeLife Stimulation</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="/catalog">Каталог</a>
+      <a href="/courses">Курсы</a>
+      <a href="/#reviews">Отзывы</a>
+      <a href="/about">О нас</a>
+      <a href="/contacts">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+
+      <div class="header-phone">
+        <small>Звонок по России бесплатный</small>
+        <span>+7 928 330-02-06</span>
+      </div>
+
+      <!-- ТЁМНАЯ ТЕМА -->
+      <button
+        type="button"
+        class="icon-link theme-toggle"
+        id="themeToggle"
+        aria-label="Включить тёмную тему"
+        aria-pressed="false"
+      >
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.4M12 19.1v2.4M21.5 12h-2.4M4.9 12H2.5M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3 5.6 5.6"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="icon-link account-button"
+        id="accountOpen"
+        aria-label="Личный кабинет"
+        aria-haspopup="dialog"
+        aria-controls="accountModal"
+      >
+        <span id="headerAvatarWrap" class="header-avatar-wrap">
+          <svg id="headerDefaultIcon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path
+              d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z"
+              fill="currentColor"
+            />
+          </svg>
+          <img id="headerAvatar" class="header-avatar" alt="" style="display:none;">
+        </span>
+      </button>
+
+      <a href="/cart" class="cart-link" aria-label="Корзина">
+        <svg class="cart-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 2h2.2l.6 3H21l-2 9H8.2L6 4H3V2Z" fill="currentColor"/></svg><span class="cart-link__text">Корзина</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Меню"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span></span>
+      </button>
+
+    </div>
+
+  </div>
+</header>
+
+
+<main class="m-page">
+  <section class="page-hero"><div class="container">
+    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span aria-hidden="true">/</span><span>Мастера</span></nav>
+    <h1>Мастера TreeLife</h1>
+    <p>Специалисты, которые работают на аппаратах TreeLife и прошли обучение методике БМС. Найдите мастера на карте и свяжитесь с ним напрямую.</p>
+  </div></section>
+
+  <section class="section" style="padding-bottom:0"><div class="container">
+    <div class="m-intro">
+      <span class="m-intro__blob"></span>
+      <div class="m-intro__text">
+        <span class="m-intro__kicker"><span class="m-live"></span>Растём вместе</span>
+        <h2>Собираем базу мастеров TreeLife</h2>
+        <p>Ищете специалиста? Найдите своего мастера в своём городе. Вы мастер? Станьте частью базы, и клиенты найдут вас сами.</p>
+      </div>
+      <div class="m-intro__btns">
+        <a class="mp-btn mp-btn--main" href="#mMapWrap" id="mFind">Найти мастера</a>
+        <a class="mp-btn mp-btn--ghost" href="/contacts">Стать мастером</a>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="m-map-wrap" id="mMapWrap" hidden>
+      <div class="m-map-badge" id="mBadge"><span class="m-live"></span><span id="mBadgeText"></span></div>
+      <div class="m-map" id="mMap" role="application" aria-label="Карта мастеров TreeLife"></div>
+    </div>
+    <div class="m-chips" id="mChips" hidden></div>
+    <div class="m-grid" id="mGrid"><p>Загружаем список…</p></div>
+    <p id="mEmpty" hidden>Список мастеров пополняется. Хотите стать мастером TreeLife? Посмотрите <a href="/courses">программу обучения</a> или <a href="/contacts">свяжитесь с нами</a>.</p>
+  </div></section>
+</main>
+
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-logo">TreeLife Stimulation</div>
+        <p class="footer-description">
+          Аппараты TreeLife и обучение работе на них.
+          Для всех. Краснодарский край.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="footer-title">Каталог</h3>
+        <div class="footer-links">
+          <a href="/catalog">Все аппараты</a>
+          <a href="/courses">Курсы</a>
+          <a href="/bms">О методике БМС</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer-title">Компания</h3>
+        <div class="footer-links">
+          <a href="/about">О нас</a>
+          <a href="/masters">Мастера</a>
+          <a href="/#reviews">Отзывы</a>
+          <a href="/contacts">Контакты</a>
+          <a href="/delivery">Доставка и оплата</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer-title">Контакты</h3>
+        <p class="footer-description">
+          +7 928 330-02-06<br>
+          info@bms23.ru
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-legal">
+      <h3 class="footer-title">Реквизиты</h3>
+      <dl class="requisites">
+        <div><dt>Индивидуальный предприниматель</dt><dd>САФОНОВ АНДРЕЙ ВАЛЕНТИНОВИЧ</dd></div>
+        <div><dt>ИНН</dt><dd>230904714807</dd></div>
+      </dl>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 TreeLife Stimulation</span>
+      <a href="/privacy">Политика конфиденциальности</a>
+      <a href="https://biostimulation.ru" target="_blank" rel="noopener">Другие наши услуги</a>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- FLOATING CONTACTS -->
+<div class="floating-contacts">
+  <a class="fc-btn fc-btn--wa" href="https://wa.me/79508427839" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.93 7.93 0 0 0 3.85 1h.01c4.38 0 7.94-3.56 7.94-7.94a7.9 7.9 0 0 0-2.4-5.64Zm-5.55 12.2h-.01a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 1 1 12.24-3.48 6.6 6.6 0 0 1-6.64 6.58Zm3.62-4.94c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.44.1-.13.2-.5.64-.61.77-.11.13-.23.15-.42.05-.2-.1-.83-.3-1.58-.97-.58-.52-.98-1.16-1.09-1.36-.11-.2-.01-.3.09-.4.09-.09.2-.23.3-.35.1-.11.13-.2.2-.32.07-.13.03-.25-.02-.35-.05-.1-.44-1.07-.6-1.46-.16-.38-.32-.33-.44-.34l-.38-.01c-.13 0-.35.05-.53.25-.18.2-.7.68-.7 1.66s.72 1.93.82 2.06c.1.13 1.4 2.15 3.4 3.01.48.2.85.33 1.14.42.48.15.91.13 1.26.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.11-.94-.05-.09-.18-.14-.38-.24Z"/></svg>
+  </a>
+  <a class="fc-btn fc-btn--tg" href="https://t.me/treelifebeauty" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.6 18.8 19.9c-.23 1.03-.85 1.28-1.72.8l-4.75-3.5-2.29 2.2c-.25.25-.47.47-.96.47l.34-4.86 8.85-8c.38-.35-.09-.54-.6-.2L6.5 13.3l-4.7-1.47c-1.02-.32-1.04-1.02.22-1.5L20.6 3.5c.86-.32 1.6.2 1.3 1.1Z"/></svg>
+  </a>
+</div>
+<!-- /FLOATING CONTACTS -->
+
+
+
+<!-- ACCOUNT MODAL -->
+
+<div class="account-modal" id="accountModal" aria-hidden="true">
+
+  <div class="account-modal__box" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+
+    <button type="button" class="account-modal__close" id="accountClose" aria-label="Закрыть">×</button>
+
+    <!-- LOGIN -->
+    <div id="loginView">
+
+      <div class="account-modal__header">
+        <div class="account-modal__icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h2 id="accountTitle">Вход</h2>
+        <p>Войдите в личный кабинет TreeLife Stimulation</p>
+      </div>
+
+      <form class="account-form" id="loginForm" novalidate>
+
+        <label for="loginPhone">Телефон</label>
+        <input type="tel" id="loginPhone" name="phone" placeholder="+7 928 330-02-06" autocomplete="tel" inputmode="tel">
+        <div class="field-error" id="loginPhoneError"></div>
+
+        <label for="loginPassword">Пароль</label>
+        <input type="password" id="loginPassword" name="password" placeholder="Введите пароль" autocomplete="current-password">
+        <div class="field-error" id="loginPasswordError"></div>
+
+        <label class="remember-row" for="remember">
+          <input type="checkbox" id="remember" name="remember" value="1">
+          <span>Запомнить меня</span>
+        </label>
+
+        <div class="form-error" id="loginFormError"></div>
+
+        <button type="submit" class="btn btn-primary">Войти</button>
+
+      </form>
+
+      <div class="account-modal__divider"><span>или</span></div>
+
+      <button type="button" class="btn btn-outline account-register" id="showRegister">Создать аккаунт</button>
+
+    </div>
+
+    <!-- REGISTER -->
+    <div id="registerView" hidden>
+
+      <div class="account-modal__header">
+        <div class="account-modal__icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z" fill="currentColor"/>
+            <path d="M18 13v3h-3v2h3v3h2v-3h3v-2h-3v-3z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h2>Регистрация</h2>
+        <p>Создайте личный кабинет</p>
+      </div>
+
+      <form class="account-form" id="registerForm" novalidate>
+
+        <label for="registerName">Имя</label>
+        <input type="text" id="registerName" name="name" placeholder="Ваше имя" autocomplete="name">
+        <div class="field-error" id="registerNameError"></div>
+
+        <label for="registerPhone">Телефон</label>
+        <input type="tel" id="registerPhone" name="phone" placeholder="+7 928 330-02-06" autocomplete="tel" inputmode="tel">
+        <div class="field-error" id="registerPhoneError"></div>
+
+        <label for="registerPassword">Пароль</label>
+        <input type="password" id="registerPassword" name="password" placeholder="Минимум 6 символов" autocomplete="new-password">
+        <div class="field-error" id="registerPasswordError"></div>
+
+        <div class="form-error" id="registerFormError"></div>
+
+        <button type="submit" class="btn btn-primary">Создать аккаунт</button>
+
+      </form>
+
+      <div class="account-modal__divider"><span>или</span></div>
+
+      <button type="button" class="btn btn-outline account-register" id="showLogin">Уже есть аккаунт</button>
+
+    </div>
+
+    <!-- PROFILE -->
+    <div id="profileView" hidden>
+
+      <div class="profile-header">
+
+        <div class="profile-avatar-big-wrap">
+          <img id="profileAvatar" class="profile-avatar-big" alt="Аватар пользователя" hidden style="display:none;">
+          <div id="profileAvatarPlaceholder" class="profile-avatar-placeholder">
+            <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+
+        <div>
+          <h2 id="profileName">Пользователь</h2>
+          <p id="profilePhone"></p>
+        </div>
+
+      </div>
+
+      <div class="profile-section">
+        <label class="avatar-upload" for="avatarInput">
+          <span class="btn btn-outline">Изменить аватар</span>
+        </label>
+        <input type="file" id="avatarInput" accept="image/jpeg,image/png,image/webp" hidden>
+        <div class="field-error" id="avatarError"></div>
+        <div class="profile-success" id="avatarSuccess"></div>
+      </div>
+
+      <button type="button" class="btn btn-primary account-logout" id="logoutButton">Выйти из аккаунта</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="js/masters.js?v=20261101"></script>
+<script>
+(function () {
+  var T = window.TLM, data = [], city = '', map = null, group = null, markers = [];
+  var wrap = document.getElementById('mMapWrap'), grid = document.getElementById('mGrid'), chips = document.getElementById('mChips');
+
+  function visible() { return data.filter(function (m) { return !city || m.city === city; }); }
+  function renderCards() { grid.innerHTML = visible().map(function (m, i) { return T.card(m, i, !!map); }).join(''); }
+
+  function renderChips() {
+    var cities = []; data.forEach(function (m) { if (cities.indexOf(m.city) < 0) cities.push(m.city); });
+    if (cities.length < 2) return;
+    chips.hidden = false;
+    chips.innerHTML = ['<button type="button" class="m-chip is-on" data-city="">Все (' + data.length + ')</button>'].concat(cities.map(function (c) {
+      var n = data.filter(function (m) { return m.city === c; }).length;
+      return '<button type="button" class="m-chip" data-city="' + T.esc(c) + '">' + T.esc(c) + ' · ' + n + '</button>';
+    })).join('');
+  }
+
+  function popup(m) {
+    return '<div class="m-pop">' + T.ava(m, 'm-pop__ava') + '<div><b>' + T.esc(m.name) + '</b><span>' + T.esc(m.city) + (m.specialty ? ' · ' + T.esc(m.specialty) : '') +
+      '</span><a href="/master?id=' + m.id + '">Страница мастера →</a></div></div>';
+  }
+
+  function fit(first) {
+    var vis = markers.filter(function (k) { return !city || k._m.city === city; });
+    if (!vis.length) return;
+    map.flyToBounds(L.latLngBounds(vis.map(function (k) { return k.getLatLng(); })), { padding: [80, 80], maxZoom: 10, duration: first ? 2.6 : 1.6 });
+  }
+  function syncMarkers() {
+    group.clearLayers();
+    markers.forEach(function (k) { if (!city || k._m.city === city) group.addLayer(k); });
+  }
+
+  function buildMap() {
+    if (typeof L === 'undefined') { wrap.hidden = false; wrap.innerHTML = '<div class="m-map-off">Карта сейчас недоступна, список мастеров ниже.</div>'; return; }
+    var byCity = {}; data.forEach(function (m) { (byCity[m.city] = byCity[m.city] || []).push(m); });
+    data.forEach(function (m, i) {
+      var c = T.coords(m.city); if (!c) return;
+      var arr = byCity[m.city], n = arr.length, k = arr.indexOf(m);
+      if (n > 1) { var a = k * 2 * Math.PI / n; c = [c[0] + Math.sin(a) * 0.02, c[1] + Math.cos(a) * 0.03]; }   /* мастера одного города не слипаются; точки не показывают адрес */
+      var mk = L.marker(c, { icon: T.pinIcon(m, i), title: m.name, riseOnHover: true }).bindPopup(popup(m), { offset: [0, -4] });
+      mk._m = m; markers.push(mk);
+    });
+    if (!markers.length) return;
+    wrap.hidden = false;
+    map = T.baseMap('mMap', { scrollWheelZoom: false, worldCopyJump: true, minZoom: 2 }).setView([58, 62], 3);
+    group = L.layerGroup().addTo(map);
+    map.on('click', function () { map.scrollWheelZoom.enable(); });
+    wrap.addEventListener('mouseleave', function () { map.scrollWheelZoom.disable(); });
+    syncMarkers();
+    var inCities = {}; data.forEach(function (m) { inCities[m.city] = 1; });
+    var nc = Object.keys(inCities).length;
+    document.getElementById('mBadgeText').textContent = data.length + ' ' + T.plural(data.length, 'мастер', 'мастера', 'мастеров') + ' · ' + nc + ' ' + T.plural(nc, 'город', 'города', 'городов');
+    setTimeout(function () { map.invalidateSize(); fit(true); }, 500);
+  }
+
+  chips.addEventListener('click', function (e) {
+    var b = e.target.closest('.m-chip'); if (!b) return;
+    city = b.getAttribute('data-city');
+    Array.prototype.forEach.call(chips.children, function (c) { c.classList.toggle('is-on', c === b); });
+    renderCards();
+    if (map) { map.closePopup(); syncMarkers(); fit(false); }
+  });
+
+  grid.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-show]'); if (!b || !map) return;
+    var id = parseInt(b.getAttribute('data-show'), 10);
+    var mk = markers.filter(function (k) { return k._m.id === id; })[0]; if (!mk) return;
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    map.flyTo(mk.getLatLng(), 11, { duration: 1.8 });
+    map.once('moveend', function () { mk.openPopup(); });
+  });
+
+  document.getElementById('mFind').addEventListener('click', function (e) { var t = document.getElementById('mMapWrap'); if (t.hidden) t = document.getElementById('mGrid'); e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+  T.load().then(function (list) {
+    data = list;
+    if (!data.length) { grid.innerHTML = ''; document.getElementById('mEmpty').hidden = false; return; }
+    buildMap(); renderChips(); renderCards();
+  }).catch(function () { grid.innerHTML = ''; document.getElementById('mEmpty').hidden = false; });
+})();
+</script>
+
+<script src="js/theme.js"></script>
+<script src="js/main.js"></script>
+<script src="js/account.js"></script>
+
+<script src="js/callback.js"></script>
+
+<script src="js/cookies.js" defer></script>
+
+</body>
+</html>

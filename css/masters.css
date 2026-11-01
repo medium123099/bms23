@@ -1,0 +1,165 @@
+/* TreeLife: карта мастеров и страница мастера. Цвета берутся из переменных style.css, обе темы работают. */
+.m-page { --m-ease: cubic-bezier(.2, .8, .2, 1); }
+
+/* ---------- аватар-заглушка ---------- */
+.m-ava--ph { display: grid; place-items: center; color: #fff; font-family: var(--font-head); font-weight: 600;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%); }
+
+/* ---------- карта ---------- */
+.m-map-wrap { position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--border-c);
+  box-shadow: var(--shadow-lg); background: var(--surface-2); isolation: isolate; }
+.m-map { height: min(580px, 72vh); width: 100%; background: var(--surface-2); }
+.m-map .leaflet-tile-pane { filter: saturate(.55) hue-rotate(-8deg) contrast(.96) brightness(1.02); transition: filter .4s; }
+html[data-theme="dark"] .m-map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) saturate(.55); }
+html[data-theme="dark"] .m-map img.leaflet-tile { filter: none; }
+.m-map .leaflet-control-attribution { font-size: 10px; background: rgba(var(--surface-rgb), .8); color: var(--text); }
+.m-map .leaflet-bar a { background: var(--surface); color: var(--text-strong); border-color: var(--border-c); }
+.m-map .leaflet-bar a:hover { background: var(--surface-3); }
+.m-map-wrap::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 500; border-radius: inherit;
+  box-shadow: inset 0 0 90px rgba(7, 58, 61, .22); }
+.m-map-badge { position: absolute; z-index: 600; left: 16px; top: 16px; display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--text-strong);
+  background: rgba(var(--surface-rgb), .82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-c); box-shadow: var(--shadow); animation: mRise .8s var(--m-ease) both .3s; }
+.m-live { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); position: relative; flex: none; }
+.m-live::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--teal); animation: mPulse 2s ease-out infinite; }
+.m-map-off { padding: 40px 20px; text-align: center; }
+
+/* ---------- маркеры ---------- */
+.m-pin { background: none; border: 0; }
+.m-pin__in { position: relative; display: block; width: 52px; height: 52px; animation: mDrop .8s cubic-bezier(.2, 1.5, .4, 1) both; animation-delay: var(--d, 0s); }
+.m-pin__pulse { position: absolute; inset: -4px; border-radius: 50%; background: var(--teal); opacity: .4;
+  animation: mPulse 2.6s ease-out infinite; animation-delay: var(--d, 0s); }
+.m-pin__ava { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; border: 3px solid #fff; background: var(--teal-dark);
+  box-shadow: 0 8px 18px rgba(7, 58, 61, .45); transition: transform .3s var(--m-ease), box-shadow .3s; }
+.m-pin__img { width: 100%; height: 100%; object-fit: cover; display: grid; place-items: center; font-size: 17px; }
+.m-pin:hover .m-pin__ava, .m-pin.is-active .m-pin__ava { transform: scale(1.18); box-shadow: 0 12px 26px rgba(7, 58, 61, .55); }
+html[data-theme="dark"] .m-pin__ava img { filter: none; }
+
+.leaflet-popup-content-wrapper { border-radius: 18px; padding: 0; background: var(--surface); color: var(--text); box-shadow: var(--shadow-lg); border: 1px solid var(--border-c); }
+.leaflet-popup-tip { background: var(--surface); }
+.leaflet-popup-content { margin: 0; width: 250px !important; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--text); }
+.m-pop { padding: 16px; display: flex; gap: 12px; align-items: center; }
+.m-pop__ava { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: none; font-size: 19px; }
+.m-pop b { display: block; font-family: var(--font-head); font-size: 17px; color: var(--text-strong); line-height: 1.2; }
+.m-pop span { display: block; font-size: 13px; opacity: .8; margin-top: 2px; }
+.m-pop a { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--teal); text-decoration: none; }
+.m-pop a:hover { text-decoration: underline; }
+
+/* ---------- фильтр городов ---------- */
+.m-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 6px; }
+.m-chip { font: inherit; font-size: 14px; padding: 9px 16px; border-radius: 999px; cursor: pointer; color: var(--text);
+  background: var(--surface); border: 1.5px solid var(--border-c); transition: all .25s var(--m-ease); }
+.m-chip:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+.m-chip.is-on { background: var(--teal); border-color: var(--teal); color: #fff; box-shadow: 0 8px 18px -6px rgba(20, 163, 161, .55); }
+html[data-theme="dark"] .m-chip.is-on { color: #06201f; }
+
+/* ---------- карточки мастеров ---------- */
+.m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px; margin-top: 22px; }
+.m-card { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 22px; color: var(--text);
+  background: var(--surface); border: 1px solid var(--border-c); box-shadow: var(--shadow);
+  animation: mRise .7s var(--m-ease) both; animation-delay: calc(var(--i, 0) * 70ms);
+  transition: transform .35s var(--m-ease), box-shadow .35s, border-color .35s; }
+.m-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--teal); }
+.m-card__top { height: 84px; position: relative; overflow: hidden;
+  background: linear-gradient(120deg, var(--teal-deep) 0%, var(--teal-dark) 50%, var(--teal) 130%); }
+.m-card__top::before, .m-card__top::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255, 255, 255, .1); animation: mFloat 9s ease-in-out infinite; }
+.m-card__top::before { width: 120px; height: 120px; right: -30px; top: -50px; }
+.m-card__top::after { width: 70px; height: 70px; left: 30%; bottom: -40px; animation-delay: -4s; }
+.m-card__body { padding: 0 22px 22px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.m-card__ava { width: 92px; height: 92px; margin-top: -46px; border-radius: 50%; object-fit: cover; flex: none; position: relative;
+  border: 4px solid var(--surface); box-shadow: 0 10px 22px -6px rgba(7, 58, 61, .4); font-size: 30px; transition: transform .4s var(--m-ease); }
+.m-card:hover .m-card__ava { transform: scale(1.06) rotate(-3deg); }
+.m-card h3 { margin: 8px 0 0; font-family: var(--font-head); font-size: 22px; line-height: 1.2; color: var(--text-strong); }
+.m-card h3 a { color: inherit; text-decoration: none; }
+.m-card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.m-where { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--teal); font-weight: 500; }
+.m-where svg { width: 15px; height: 15px; flex: none; }
+.m-spec { font-size: 14px; opacity: .85; }
+.m-about { font-size: 14px; line-height: 1.55; opacity: .85; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 4px 0 0; }
+.m-card__foot { margin-top: auto; padding-top: 14px; display: flex; gap: 10px; align-items: center; position: relative; z-index: 2; }
+.m-link { font: inherit; font-size: 14px; font-weight: 600; color: var(--teal); background: none; border: 0; padding: 0; cursor: pointer; }
+.m-link:hover { text-decoration: underline; }
+.m-more { margin-left: auto; font-size: 14px; font-weight: 600; color: var(--teal); text-decoration: none; transition: transform .25s; }
+.m-card:hover .m-more { transform: translateX(4px); }
+
+/* ---------- страница мастера ---------- */
+.mp-hero { position: relative; overflow: hidden; color: #fff; padding: 56px 0 120px;
+  background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-dark) 55%, var(--teal) 150%); }
+.mp-hero .crumbs, .mp-hero .crumbs a { color: rgba(255, 255, 255, .8); }
+.mp-blob { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 70%); animation: mFloat 12s ease-in-out infinite; }
+.mp-blob--1 { width: 460px; height: 460px; right: -120px; top: -160px; }
+.mp-blob--2 { width: 300px; height: 300px; left: -80px; bottom: -140px; animation-delay: -5s; }
+.mp-hero__row { position: relative; display: flex; align-items: center; gap: 36px; margin-top: 26px; }
+.mp-ava { position: relative; width: 190px; height: 190px; flex: none; border-radius: 50%; padding: 6px; animation: mRise .9s var(--m-ease) both; }
+.mp-ava::before { content: ""; position: absolute; inset: 0; border-radius: 50%; animation: mSpin 8s linear infinite;
+  background: conic-gradient(from 0deg, #fff, var(--teal), rgba(255, 255, 255, .15), #fff); }
+.mp-ava__img { position: relative; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 5px solid var(--teal-deep); font-size: 60px; box-shadow: 0 20px 44px -10px rgba(0, 0, 0, .5); }
+.mp-hero h1 { font-family: var(--font-head); font-size: clamp(32px, 5vw, 52px); line-height: 1.08; margin: 0 0 14px; color: #fff; animation: mRise .8s var(--m-ease) both .1s; }
+.mp-tags { display: flex; flex-wrap: wrap; gap: 10px; animation: mRise .8s var(--m-ease) both .2s; }
+.mp-tag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; font-size: 14px;
+  background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .28); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.mp-tag svg { width: 15px; height: 15px; }
+.mp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; animation: mRise .8s var(--m-ease) both .3s; }
+.mp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 14px; font: inherit; font-weight: 600; text-decoration: none; transition: transform .25s var(--m-ease), box-shadow .25s; }
+.mp-btn:hover { transform: translateY(-3px); }
+.mp-btn--main { background: #fff; color: var(--teal-deep); box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .45); }
+.mp-btn--ghost { color: #fff; border: 1.5px solid rgba(255, 255, 255, .6); }
+.mp-btn--ghost:hover { background: rgba(255, 255, 255, .12); }
+
+.mp-body { position: relative; margin-top: -64px; padding-bottom: 20px; }
+.mp-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; align-items: start; }
+.mp-card { background: var(--surface); border: 1px solid var(--border-c); border-radius: 22px; padding: 28px; box-shadow: var(--shadow-lg); animation: mRise .8s var(--m-ease) both .35s; }
+.mp-card + .mp-card { margin-top: 24px; animation-delay: .5s; }
+.mp-card h2 { font-family: var(--font-head); font-size: 24px; margin: 0 0 14px; color: var(--text-strong); }
+.mp-card p { line-height: 1.7; margin: 0 0 10px; }
+.mp-note { font-size: 13px; opacity: .7; }
+.mp-mini { height: 240px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-c); margin: 6px 0 14px; }
+.mp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.mp-list li { display: flex; gap: 12px; align-items: center; }
+.mp-list svg { width: 20px; height: 20px; color: var(--teal); flex: none; }
+.mp-list a { color: var(--text-strong); font-weight: 500; text-decoration: none; }
+.mp-list a:hover { color: var(--teal); }
+.mp-others { margin-top: 56px; }
+.mp-others h2 { font-family: var(--font-head); font-size: 28px; color: var(--text-strong); margin: 0; }
+.mp-cta { margin: 56px 0 24px; padding: 34px; border-radius: 24px; color: #fff; display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  background: linear-gradient(120deg, var(--teal-deep), var(--teal-dark) 60%, var(--teal)); }
+.mp-cta h2 { margin: 0 0 6px; font-family: var(--font-head); color: #fff; }
+.mp-cta p { margin: 0; opacity: .88; }
+.mp-404 { text-align: center; padding: 70px 0; }
+
+/* ---------- анимации ---------- */
+@keyframes mRise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes mDrop { 0% { opacity: 0; transform: translateY(-46px) scale(.4); } 100% { opacity: 1; transform: none; } }
+@keyframes mPulse { 0% { transform: scale(.9); opacity: .5; } 100% { transform: scale(2.1); opacity: 0; } }
+@keyframes mFloat { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-18px, 14px); } }
+@keyframes mSpin { to { transform: rotate(360deg); } }
+
+@media (max-width: 860px) {
+  .mp-grid { grid-template-columns: 1fr; }
+  .mp-hero__row { flex-direction: column; text-align: center; gap: 22px; }
+  .mp-tags, .mp-actions { justify-content: center; }
+  .mp-ava { width: 160px; height: 160px; }
+}
+@media (max-width: 560px) {
+  .m-map { height: 62vh; }
+  .m-map-badge { left: 10px; top: 10px; font-size: 13px; padding: 8px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .m-page *, .m-page *::before, .m-page *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---------- вступительный блок ---------- */
+.m-intro { position: relative; overflow: hidden; display: flex; gap: 28px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  padding: 36px 40px; border-radius: 26px; color: #fff; box-shadow: var(--shadow-lg);
+  background: linear-gradient(120deg, var(--teal-deep) 0%, var(--teal-dark) 55%, var(--teal) 140%); animation: mRise .8s var(--m-ease) both; }
+.m-intro__blob { position: absolute; width: 380px; height: 380px; right: -90px; top: -150px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 70%); animation: mFloat 12s ease-in-out infinite; }
+.m-intro__text { position: relative; max-width: 620px; }
+.m-intro__kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; opacity: .9; margin-bottom: 10px; }
+.m-intro__kicker .m-live, .m-intro__kicker .m-live::after { background: #fff; }
+.m-intro h2 { margin: 0 0 10px; font-family: var(--font-head); font-size: clamp(26px, 4vw, 38px); line-height: 1.12; color: #fff; }
+.m-intro p { margin: 0; font-size: 16px; line-height: 1.6; opacity: .92; }
+.m-intro__btns { position: relative; display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 640px) { .m-intro { padding: 26px 22px; } }

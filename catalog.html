@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem("tl-theme");
+      if (!t) {
+        var save = !!((navigator.connection || navigator.webkitConnection || navigator.mozConnection || {}).saveData);
+        var sys = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        t = (save || sys) ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+  </script>
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+  <link rel="shortcut icon" href="/favicon.ico?v=2">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TreeLife Stimulation — каталог аппаратов Lite, Stimulation и Vacuum</title>
+
+  <meta
+    name="description"
+    content="Каталог аппаратов TreeLife: Lite, Stimulation и Vacuum. Цены, характеристики, обучение работе на аппаратах."
+  >
+  <link rel="canonical" href="https://bms23.ru/catalog">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TreeLife Stimulation">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://bms23.ru/catalog">
+  <meta property="og:title" content="TreeLife Stimulation — каталог аппаратов Lite, Stimulation и Vacuum">
+  <meta property="og:description" content="Каталог аппаратов TreeLife: Lite, Stimulation и Vacuum. Цены, характеристики, обучение работе на аппаратах.">
+  <meta property="og:image" content="https://bms23.ru/assets/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- шрифты грузятся асинхронно: если Google Fonts недоступны/медленные
+       (блокировки, слабая сеть), страница всё равно открывается сразу,
+       просто со шрифтом по умолчанию, без "зависания" на загрузке -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'; this.onload=null;">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+
+  <link rel="stylesheet" href="css/style.css?v=20261006">
+  <link rel="stylesheet" href="css/catalog.css?v=20261006">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=92555538', 'ym');
+
+    ym(92555538, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/92555538" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Какой аппарат выбрать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Для лица и шеи подойдёт Lite. Если нужна работа и с лицом, и с телом, выбирайте Stimulation. Для коррекции фигуры и лица вибровакуумным массажем подойдёт Vacuum. Не уверены? Позвоните, подскажем."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужен ли опыт в косметологии?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Обучение проходит с нуля, поэтому аппараты подходят и новичкам."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Где проходит обучение?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Очно в Краснодаре или онлайн, формат выбираете вы."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как устроены доставка и оплата?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Способ, срок и стоимость доставки зависят от вашего города, а оплату согласуем при подтверждении заказа. Подробнее на странице «Доставка, оплата и гарантия»."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Аппараты только для кабинета?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет, аппараты TreeLife подходят как для профессионального, так и для домашнего применения."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://bms23.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Каталог",
+      "item": "https://bms23.ru/catalog"
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container site-header__row">
+
+    <a href="/" class="logo">
+      <img src="assets/logo.png" alt="TreeLife Stimulation" class="logo__mark">
+      <span>TreeLife Stimulation</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="/catalog" aria-current="page">Каталог</a>
+      <a href="/courses">Курсы</a>
+      <a href="/#reviews">Отзывы</a>
+      <a href="/about">О нас</a>
+      <a href="/contacts">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+
+      <div class="header-phone">
+        <small>Звонок по России бесплатный</small>
+        <span>+7 928 330-02-06</span>
+      </div>
+
+      <!-- ТЁМНАЯ ТЕМА -->
+      <button
+        type="button"
+        class="icon-link theme-toggle"
+        id="themeToggle"
+        aria-label="Включить тёмную тему"
+        aria-pressed="false"
+      >
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.4M12 19.1v2.4M21.5 12h-2.4M4.9 12H2.5M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3 5.6 5.6"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11Z"/>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="icon-link account-button"
+        id="accountOpen"
+        aria-label="Личный кабинет"
+        aria-haspopup="dialog"
+        aria-controls="accountModal"
+      >
+        <span id="headerAvatarWrap" class="header-avatar-wrap">
+          <svg id="headerDefaultIcon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path
+              d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z"
+              fill="currentColor"
+            />
+          </svg>
+          <img id="headerAvatar" class="header-avatar" alt="" style="display:none;">
+        </span>
+      </button>
+
+      <a href="/cart" class="cart-link" aria-label="Корзина">
+        <svg class="cart-link__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM3 2h2.2l.6 3H21l-2 9H8.2L6 4H3V2Z" fill="currentColor"/></svg><span class="cart-link__text">Корзина</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Меню"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span></span>
+      </button>
+
+    </div>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- ===== ШАПКА СТРАНИЦЫ ===== -->
+  <section class="cat-hero">
+    <div class="container">
+
+      <nav class="crumbs" aria-label="Навигация">
+        <a href="/">Главная</a>
+        <span aria-hidden="true">/</span>
+        <span>Каталог</span>
+      </nav>
+
+      <div class="cat-hero__grid">
+        <div>
+          <h1>Каталог аппаратов <em>TreeLife</em></h1>
+          <p class="cat-hero__lead">
+            Три аппарата для кабинета и для дома. К каждому прилагается обучение с нуля:
+            очно в Краснодаре или онлайн, опыт в косметологии не нужен.
+          </p>
+          <div class="cat-hero__actions">
+            <a href="#models" class="btn btn-primary">Выбрать аппарат</a>
+            <a href="#compare" class="btn btn-outline">Сравнить модели</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== МОДЕЛИ ===== -->
+  <section class="section" id="models">
+    <div class="container">
+
+      <div class="product-grid" id="productList">
+
+        <!-- TreeLife Lite -->
+        <article class="product-card" data-zones="face">
+          <a href="/treelife-lite" class="product-card__media">
+            <span class="product-card__badge">Лицо и шея</span>
+            <img src="assets/foto2.webp" alt="Аппарат TreeLife Lite" loading="lazy"
+                 onerror="this.parentElement.classList.add('is-empty'); this.remove();">
+          </a>
+
+          <div class="product-card__body">
+            <div class="product-card__category">Аппарат для лица</div>
+            <h2><a href="/treelife-lite">TreeLife Lite</a></h2>
+            <p>
+              Упрощённая версия аппарата биомеханической стимуляции лица
+              и шейно-воротниковой зоны.
+            </p>
+
+            <dl class="product-card__specs">
+              
+              <div><dt>Зона</dt><dd>Лицо, шея</dd></div>
+            </dl>
+
+            <ul class="check-list">
+              <li>Для кабинета и для дома</li>
+              <li>Обучение очно или онлайн</li>
+            </ul>
+          </div>
+
+          <div class="product-card__buy">
+            <div class="product-card__price">50 000 ₽</div>
+            <div class="product-card__buttons">
+              <button type="button" class="btn btn-primary" data-add-to-cart
+                data-id="treelife-lite" data-name="TreeLife Lite" data-price="50000">В корзину</button>
+              <a href="/treelife-lite" class="btn btn-outline">Подробнее</a>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- TreeLife Stimulation -->
+        <article class="product-card product-card--accent" data-zones="face body">
+          <a href="/treelife-beauty" class="product-card__media">
+            <span class="product-card__badge">Универсальный</span>
+            <img src="assets/foto1.webp" alt="Аппарат TreeLife Stimulation" loading="lazy"
+                 onerror="this.parentElement.classList.add('is-empty'); this.remove();">
+          </a>
+
+          <div class="product-card__body">
+            <div class="product-card__category">Лицо и тело</div>
+            <h2><a href="/treelife-beauty">TreeLife Stimulation</a></h2>
+            <p>
+              Аппарат биомеханической стимуляции лица и тела. Для кабинета и для дома.
+            </p>
+
+            <dl class="product-card__specs">
+              
+              <div><dt>Зона</dt><dd>Лицо, тело</dd></div>
+            </dl>
+
+            <ul class="check-list">
+              <li>Работа с лицом и телом на одном аппарате</li>
+              <li>Обучение очно или онлайн</li>
+            </ul>
+          </div>
+
+          <div class="product-card__buy">
+            <div class="product-card__price"><small>от</small> 65 000 ₽</div>
+            <div class="product-card__buttons">
+              <button type="button" class="btn btn-primary" data-add-to-cart
+                data-id="treelife-beauty" data-name="TreeLife Stimulation" data-price="65000">В корзину</button>
+              <a href="/treelife-beauty" class="btn btn-outline">Подробнее</a>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- TreeLife Vacuum -->
+        <article class="product-card" data-zones="body face">
+          <a href="/treelife-vacuum" class="product-card__media">
+            <span class="product-card__badge">Вибровакуум</span>
+            <img src="assets/foto3.webp" alt="Аппарат TreeLife Vacuum" loading="lazy"
+                 onerror="this.parentElement.classList.add('is-empty'); this.remove();">
+          </a>
+
+          <div class="product-card__body">
+            <div class="product-card__category">Аппарат для тела и лица</div>
+            <h2><a href="/treelife-vacuum">TreeLife Vacuum</a></h2>
+            <p>
+              Универсальный аппарат вибровакуумного массажа
+              и биомеханической стимуляции для коррекции фигуры и лица.
+            </p>
+
+            <dl class="product-card__specs">
+              <div><dt>Режим</dt><dd>Вибровакуум</dd></div>
+              <div><dt>Зона</dt><dd>Тело, лицо</dd></div>
+            </dl>
+
+            <ul class="check-list">
+              <li>Вибровакуумный массаж</li>
+              <li>Биомеханическая стимуляция</li>
+              <li>Обучение очно или онлайн</li>
+            </ul>
+          </div>
+
+          <div class="product-card__buy">
+            <div class="product-card__price">100 000 ₽</div>
+            <div class="product-card__buttons">
+              <button type="button" class="btn btn-primary" data-add-to-cart
+                data-id="treelife-vacuum" data-name="TreeLife Vacuum" data-price="100000">В корзину</button>
+              <a href="/treelife-vacuum" class="btn btn-outline">Подробнее</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== СРАВНЕНИЕ ===== -->
+  <section class="section section--sage" id="compare">
+    <div class="container">
+
+      <div class="block-head">
+        <h2>Сравнение моделей</h2>
+        <p>Главное о каждом аппарате в одной таблице.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Параметр</span></th>
+              <th scope="col">TreeLife Lite</th>
+              <th scope="col" class="is-accent">TreeLife Stimulation</th>
+              <th scope="col">TreeLife Vacuum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Цена</th><td>50 000 ₽</td><td class="is-accent">от 65 000 ₽</td><td>100 000 ₽</td></tr>
+            <tr><th scope="row">Зона воздействия</th><td>Лицо, шея</td><td class="is-accent">Лицо, тело</td><td>Тело, лицо</td></tr>
+            <tr><th scope="row">Воздействие</th><td>Биомеханическая стимуляция</td><td class="is-accent">Биомеханическая стимуляция</td><td>Вибровакуум + биомеханическая стимуляция</td></tr>
+            <tr><th scope="row">Обучение</th><td>Очно / онлайн</td><td class="is-accent">Очно / онлайн</td><td>Очно / онлайн</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== ЧТО ВХОДИТ В ПОКУПКУ ===== -->
+  <section class="section" id="why">
+    <div class="container">
+
+      <div class="block-head">
+        <h2>Почему TreeLife</h2>
+        <p>Что вы получаете вместе с аппаратом, а не только сам аппарат.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Параметр</span></th>
+              <th scope="col">Просто аппарат</th>
+              <th scope="col" class="is-accent">Аппарат TreeLife</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Обучение</th><td>Разбираться придётся самостоятельно</td><td class="is-accent">Курс с нуля, очно или онлайн</td></tr>
+            <tr><th scope="row">Сервис</th><td>Мастера нужно искать отдельно</td><td class="is-accent">Собственная сервисная служба</td></tr>
+            <tr><th scope="row">Запчасти</th><td>Сроки неизвестны</td><td class="is-accent">В наличии</td></tr>
+            <tr><th scope="row">Поддержка</th><td>Как повезёт</td><td class="is-accent">По телефону и онлайн</td></tr>
+            <tr><th scope="row">Применение</th><td>Чаще только для кабинета</td><td class="is-accent">Для салона и для дома</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="center">
+        <a href="/delivery" class="btn btn-outline">Доставка, оплата и гарантия</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== ОБУЧЕНИЕ ===== -->
+  <section class="section section--sage">
+    <div class="container">
+
+      <div class="block-head">
+        <h2>Обучение к каждому аппарату</h2>
+        <p>Работать на аппаратах TreeLife можно научиться с нуля, даже без опыта в косметологии.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step__num">1</span>
+          <h3>Выбираете аппарат</h3>
+          <p>Подберите модель под ваши задачи или позвоните, и мы подскажем.</p>
+        </div>
+        <div class="step">
+          <span class="step__num">2</span>
+          <h3>Выбираете формат</h3>
+          <p>Очно в Краснодаре или онлайн, как вам удобнее.</p>
+        </div>
+        <div class="step">
+          <span class="step__num">3</span>
+          <h3>Учитесь работать</h3>
+          <p>Обучение с нуля: от базовых основ до уверенной работы на аппарате.</p>
+        </div>
+      </div>
+
+      <div class="center">
+        <a href="/courses" class="btn btn-outline">Курсы обучения</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== FAQ ===== -->
+  <section class="section">
+    <div class="container container--narrow">
+
+      <div class="block-head">
+        <h2>Частые вопросы</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Какой аппарат выбрать?</summary>
+          <p>Для лица и шеи подойдёт Lite. Если нужна работа и с лицом, и с телом, выбирайте Stimulation. Для коррекции фигуры и лица вибровакуумным массажем подойдёт Vacuum. Не уверены? Позвоните, подскажем.</p>
+        </details>
+        <details>
+          <summary>Нужен ли опыт в косметологии?</summary>
+          <p>Нет. Обучение проходит с нуля, поэтому аппараты подходят и новичкам.</p>
+        </details>
+        <details>
+          <summary>Где проходит обучение?</summary>
+          <p>Очно в Краснодаре или онлайн, формат выбираете вы.</p>
+        </details>
+        <details>
+          <summary>Как устроены доставка и оплата?</summary>
+          <p>Способ, срок и стоимость доставки зависят от вашего города, а оплату согласуем при подтверждении заказа. Подробнее на странице <a href="/delivery">«Доставка, оплата и гарантия»</a>.</p>
+        </details>
+        <details>
+          <summary>Аппараты только для кабинета?</summary>
+          <p>Нет, аппараты TreeLife подходят как для профессионального, так и для домашнего применения.</p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== ПРИЗЫВ ===== -->
+  <section class="section section--sage">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Не знаете, какой выбрать?</h2>
+          <p>Позвоните, и мы подскажем модель под ваши задачи и расскажем про обучение.</p>
+        </div>
+        <div class="cta__side">
+          <a href="tel:+79283300206" class="cta__phone">+7 928 330-02-06</a>
+          <small>Звонок по России бесплатный</small>
+          <a href="/contacts" class="btn btn-primary">Связаться с нами</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-logo">TreeLife Stimulation</div>
+        <p class="footer-description">
+          Аппараты TreeLife и обучение работе на них.
+          Для всех. Краснодарский край.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="footer-title">Каталог</h3>
+        <div class="footer-links">
+          <a href="/catalog">Все аппараты</a>
+          <a href="/courses">Курсы</a>
+          <a href="/bms">О методике БМС</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer-title">Компания</h3>
+        <div class="footer-links">
+          <a href="/about">О нас</a>
+          <a href="/masters">Мастера</a>
+          <a href="/#reviews">Отзывы</a>
+          <a href="/contacts">Контакты</a>
+          <a href="/delivery">Доставка и оплата</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer-title">Контакты</h3>
+        <p class="footer-description">
+          +7 928 330-02-06<br>
+          info@bms23.ru
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-legal">
+      <h3 class="footer-title">Реквизиты</h3>
+      <dl class="requisites">
+        <div><dt>Индивидуальный предприниматель</dt><dd>САФОНОВ АНДРЕЙ ВАЛЕНТИНОВИЧ</dd></div>
+        <div><dt>ИНН</dt><dd>230904714807</dd></div>
+      </dl>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 TreeLife Stimulation</span>
+      <a href="/privacy">Политика конфиденциальности</a>
+      <a href="https://biostimulation.ru" target="_blank" rel="noopener">Другие наши услуги</a>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- FLOATING CONTACTS -->
+<div class="floating-contacts">
+  <a class="fc-btn fc-btn--wa" href="https://wa.me/79508427839" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.93 7.93 0 0 0 3.85 1h.01c4.38 0 7.94-3.56 7.94-7.94a7.9 7.9 0 0 0-2.4-5.64Zm-5.55 12.2h-.01a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 1 1 12.24-3.48 6.6 6.6 0 0 1-6.64 6.58Zm3.62-4.94c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.44.1-.13.2-.5.64-.61.77-.11.13-.23.15-.42.05-.2-.1-.83-.3-1.58-.97-.58-.52-.98-1.16-1.09-1.36-.11-.2-.01-.3.09-.4.09-.09.2-.23.3-.35.1-.11.13-.2.2-.32.07-.13.03-.25-.02-.35-.05-.1-.44-1.07-.6-1.46-.16-.38-.32-.33-.44-.34l-.38-.01c-.13 0-.35.05-.53.25-.18.2-.7.68-.7 1.66s.72 1.93.82 2.06c.1.13 1.4 2.15 3.4 3.01.48.2.85.33 1.14.42.48.15.91.13 1.26.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.11-.94-.05-.09-.18-.14-.38-.24Z"/></svg>
+  </a>
+  <a class="fc-btn fc-btn--tg" href="https://t.me/treelifebeauty" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.6 18.8 19.9c-.23 1.03-.85 1.28-1.72.8l-4.75-3.5-2.29 2.2c-.25.25-.47.47-.96.47l.34-4.86 8.85-8c.38-.35-.09-.54-.6-.2L6.5 13.3l-4.7-1.47c-1.02-.32-1.04-1.02.22-1.5L20.6 3.5c.86-.32 1.6.2 1.3 1.1Z"/></svg>
+  </a>
+</div>
+<!-- /FLOATING CONTACTS -->
+
+
+
+<!-- ACCOUNT MODAL -->
+
+<div class="account-modal" id="accountModal" aria-hidden="true">
+
+  <div class="account-modal__box" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+
+    <button type="button" class="account-modal__close" id="accountClose" aria-label="Закрыть">×</button>
+
+    <!-- LOGIN -->
+    <div id="loginView">
+
+      <div class="account-modal__header">
+        <div class="account-modal__icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h2 id="accountTitle">Вход</h2>
+        <p>Войдите в личный кабинет TreeLife Stimulation</p>
+      </div>
+
+      <form class="account-form" id="loginForm" novalidate>
+
+        <label for="loginPhone">Телефон</label>
+        <input type="tel" id="loginPhone" name="phone" placeholder="+7 928 330-02-06" autocomplete="tel" inputmode="tel">
+        <div class="field-error" id="loginPhoneError"></div>
+
+        <label for="loginPassword">Пароль</label>
+        <input type="password" id="loginPassword" name="password" placeholder="Введите пароль" autocomplete="current-password">
+        <div class="field-error" id="loginPasswordError"></div>
+
+        <label class="remember-row" for="remember">
+          <input type="checkbox" id="remember" name="remember" value="1">
+          <span>Запомнить меня</span>
+        </label>
+
+        <div class="form-error" id="loginFormError"></div>
+
+        <button type="submit" class="btn btn-primary">Войти</button>
+
+      </form>
+
+      <div class="account-modal__divider"><span>или</span></div>
+
+      <button type="button" class="btn btn-outline account-register" id="showRegister">Создать аккаунт</button>
+
+    </div>
+
+    <!-- REGISTER -->
+    <div id="registerView" hidden>
+
+      <div class="account-modal__header">
+        <div class="account-modal__icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+            <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z" fill="currentColor"/>
+            <path d="M18 13v3h-3v2h3v3h2v-3h3v-2h-3v-3z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h2>Регистрация</h2>
+        <p>Создайте личный кабинет</p>
+      </div>
+
+      <form class="account-form" id="registerForm" novalidate>
+
+        <label for="registerName">Имя</label>
+        <input type="text" id="registerName" name="name" placeholder="Ваше имя" autocomplete="name">
+        <div class="field-error" id="registerNameError"></div>
+
+        <label for="registerPhone">Телефон</label>
+        <input type="tel" id="registerPhone" name="phone" placeholder="+7 928 330-02-06" autocomplete="tel" inputmode="tel">
+        <div class="field-error" id="registerPhoneError"></div>
+
+        <label for="registerPassword">Пароль</label>
+        <input type="password" id="registerPassword" name="password" placeholder="Минимум 6 символов" autocomplete="new-password">
+        <div class="field-error" id="registerPasswordError"></div>
+
+        <div class="form-error" id="registerFormError"></div>
+
+        <button type="submit" class="btn btn-primary">Создать аккаунт</button>
+
+      </form>
+
+      <div class="account-modal__divider"><span>или</span></div>
+
+      <button type="button" class="btn btn-outline account-register" id="showLogin">Уже есть аккаунт</button>
+
+    </div>
+
+    <!-- PROFILE -->
+    <div id="profileView" hidden>
+
+      <div class="profile-header">
+
+        <div class="profile-avatar-big-wrap">
+          <img id="profileAvatar" class="profile-avatar-big" alt="Аватар пользователя" hidden style="display:none;">
+          <div id="profileAvatarPlaceholder" class="profile-avatar-placeholder">
+            <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+              <path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2.25c-4.28 0-8.25 2.17-8.25 5.25v1.5h16.5v-1.5c0-3.08-3.97-5.25-8.25-5.25Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+
+        <div>
+          <h2 id="profileName">Пользователь</h2>
+          <p id="profilePhone"></p>
+        </div>
+
+      </div>
+
+      <div class="profile-section">
+        <label class="avatar-upload" for="avatarInput">
+          <span class="btn btn-outline">Изменить аватар</span>
+        </label>
+        <input type="file" id="avatarInput" accept="image/jpeg,image/png,image/webp" hidden>
+        <div class="field-error" id="avatarError"></div>
+        <div class="profile-success" id="avatarSuccess"></div>
+      </div>
+
+      <button type="button" class="btn btn-primary account-logout" id="logoutButton">Выйти из аккаунта</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="js/theme.js"></script>
+<script src="js/main.js"></script>
+<script src="js/account.js"></script>
+
+<script src="js/prices.js" defer></script>
+<script src="js/cookies.js" defer></script>
+
+</body>
+</html>

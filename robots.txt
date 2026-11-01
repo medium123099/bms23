@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin
+Disallow: /config/
+Disallow: /uploads/
+
+Sitemap: https://bms23.ru/sitemap.xml

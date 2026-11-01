@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Мастера — управление</title>
+<link rel="stylesheet" href="css/style.css?v=20261006">
+<style>
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);margin:0}
+  .wrap{max-width:980px;margin:0 auto;padding:24px 16px 60px}
+  h1{font-family:var(--font-head);color:var(--text-strong);margin:0 0 6px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .card{background:var(--surface);border:1px solid var(--border-c);border-radius:14px;padding:16px;margin-bottom:12px}
+  .row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+  .mut{color:var(--text);opacity:.7;font-size:13px}
+  .tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:20px;border:1px solid var(--border-c);margin-left:6px}
+  .tag.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+  form.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+  form.grid .wide{grid-column:1/-1}
+  label{display:block;font-size:13px;font-weight:500;margin-bottom:4px}
+  input[type=text],input[type=number],textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1.5px solid var(--border-c);border-radius:10px;background:var(--surface-2);color:var(--text-strong);font:inherit}
+  textarea{min-height:80px;resize:vertical}
+  .chk{display:flex;gap:8px;align-items:flex-start;font-size:14px}
+  .chk input{margin-top:3px}
+  .btn{padding:10px 16px;border-radius:10px;border:1.5px solid var(--teal);background:var(--teal);color:#fff;font:inherit;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--teal)}
+  .btn.danger{border-color:#c0392b;color:#c0392b;background:transparent}
+  .msg{min-height:20px;margin:8px 0;font-size:14px}
+  .msg.err{color:#c0392b}.msg.ok{color:#2f855a}
+  @media(max-width:640px){form.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><p>Проверка доступа…</p></div>
+<script>
+(function () {
+  var app = document.getElementById('app'), items = [], form = null;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function api(body) {
+    return fetch('masters_api.php', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'fetch' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json(); });
+  }
+  function load() { return api({ action: 'list' }).then(function (r) { items = (r && r.masters) || []; paint(); }); }
+
+  function paint() {
+    var h = '<div class="top"><div><h1>Мастера TreeLife</h1><div class="mut">На сайте показываются только мастера со статусом «Показывать» и с отмеченным согласием на публикацию. Страница: <a href="/masters" target="_blank">/masters</a></div></div>' +
+      '<button class="btn" data-a="new">Добавить мастера</button></div>';
+    if (form) h += formHtml(form);
+    h += items.length ? items.map(function (m) {
+      return '<div class="card"><div class="row"><div><b>' + esc(m.name) + '</b>' +
+        '<span class="tag' + (m.status === 'shown' && m.consent ? ' on' : '') + '">' + (m.status === 'shown' && m.consent ? 'на сайте' : 'скрыт') + '</span>' +
+        '<div class="mut">' + esc(m.city) + (m.specialty ? ' · ' + esc(m.specialty) : '') + '</div>' +
+        (m.about ? '<div class="mut">' + esc(m.about) + '</div>' : '') +
+        '</div><div><button class="btn ghost" data-a="edit" data-id="' + m.id + '">Изменить</button> <button class="btn danger" data-a="del" data-id="' + m.id + '">Удалить</button></div></div></div>';
+    }).join('') : '<p class="mut">Пока никого нет. Нажмите «Добавить мастера».</p>';
+    app.innerHTML = h;
+  }
+
+  function formHtml(f) {
+    function v(k) { return esc(f[k] == null ? '' : f[k]); }
+    return '<div class="card"><form class="grid" id="mForm" novalidate>' +
+      '<div><label>Имя *</label><input type="text" id="m_name" maxlength="80" value="' + v('name') + '"></div>' +
+      '<div><label>Город *</label><input type="text" id="m_city" maxlength="60" value="' + v('city') + '"></div>' +
+      '<div class="wide"><label>Чем занимается (коротко)</label><input type="text" id="m_specialty" maxlength="120" value="' + v('specialty') + '" placeholder="Например: мастер БМС, аппарат TreeLife Lite"></div>' +
+      '<div class="wide"><label>О мастере</label><textarea id="m_about" maxlength="400">' + v('about') + '</textarea></div>' +
+      '<div><label>Ссылка для связи</label><input type="text" id="m_contact" maxlength="200" value="' + v('contact') + '" placeholder="@telegram или https://..."></div>' +
+      '<div><label>Телефон</label><input type="text" id="m_phone" value="' + v('phone') + '" placeholder="+7 928 000-00-00"></div>' +
+      '<div class="wide chk"><input type="checkbox" id="m_show_phone"' + (f.show_phone ? ' checked' : '') + '><label for="m_show_phone" style="margin:0;font-weight:400">Показывать телефон на сайте</label></div>' +
+      '<div class="wide chk"><input type="checkbox" id="m_consent"' + (f.consent ? ' checked' : '') + '><label for="m_consent" style="margin:0;font-weight:400">Есть согласие мастера на публикацию его данных на сайте *</label></div>' +
+      '<div class="wide chk"><input type="checkbox" id="m_shown"' + (f.status === 'shown' ? ' checked' : '') + '><label for="m_shown" style="margin:0;font-weight:400">Показывать на сайте</label></div>' +
+      '<div><label>Порядок (меньше — выше)</label><input type="number" id="m_sort" min="0" max="9999" value="' + (f.sort == null ? 100 : esc(f.sort)) + '"></div>' +
+      '<div class="wide"><div class="msg" id="m_msg"></div><button type="submit" class="btn">Сохранить</button> <button type="button" class="btn ghost" data-a="cancel">Отмена</button></div>' +
+      '</form></div>';
+  }
+
+  function g(id) { return document.getElementById(id); }
+
+  app.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-a]'); if (!b) return;
+    var a = b.getAttribute('data-a'), id = parseInt(b.getAttribute('data-id'), 10);
+    if (a === 'new') { form = { id: 0, status: 'hidden', sort: 100 }; paint(); }
+    else if (a === 'cancel') { form = null; paint(); }
+    else if (a === 'edit') { form = JSON.parse(JSON.stringify(items.filter(function (m) { return m.id === id; })[0] || {})); paint(); }
+    else if (a === 'del') { if (confirm('Удалить мастера из списка?')) api({ action: 'delete', id: id }).then(load); }
+  });
+
+  app.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var msg = g('m_msg'); msg.className = 'msg'; msg.textContent = '';
+    api({
+      action: 'save', id: form.id || 0, name: g('m_name').value, city: g('m_city').value, specialty: g('m_specialty').value,
+      about: g('m_about').value, contact: g('m_contact').value, phone: g('m_phone').value,
+      show_phone: g('m_show_phone').checked, consent: g('m_consent').checked,
+      status: g('m_shown').checked ? 'shown' : 'hidden', sort: g('m_sort').value
+    }).then(function (r) {
+      if (!r || !r.success) { msg.className = 'msg err'; msg.textContent = (r && r.message) || 'Не удалось сохранить'; return; }
+      form = null; load();
+    }).catch(function () { msg.className = 'msg err'; msg.textContent = 'Не удалось связаться с сервером'; });
+  });
+
+  fetch('check_auth.php', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (d) {
+    if (!d || !d.success || !d.auth || d.user.role !== 'admin') { app.innerHTML = '<h1>Доступ закрыт</h1><p>Войдите как администратор через личный кабинет на сайте.</p><a href="/">На главную</a>'; return; }
+    return load();
+  }).catch(function () { app.innerHTML = '<h1>Не удалось загрузить</h1><a href="/">На главную</a>'; });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* =========================================================
+   TreeLife Stimulation — pages.css
+   Стили для /courses, /about, /contacts, /privacy.
+   Подключается после style.css и catalog.css.
+   ========================================================= */
+
+.page-hero {
+  padding: 28px 0 48px;
+  background:
+    radial-gradient(900px 300px at 85% -10%, var(--surface-3), transparent 70%),
+    linear-gradient(180deg, var(--surface-2), var(--white));
+  border-bottom: 1px solid var(--border-c);
+}
+.page-hero h1 { margin: 0 0 12px; }
+.page-hero p  { margin: 0; max-width: 640px; font-size: 18px; }
+
+.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.info-card {
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border-c);
+  border-radius: 12px;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.info-card:hover { border-color: var(--teal); box-shadow: var(--shadow); transform: translateY(-3px); }
+.info-card__tag {
+  display: inline-block; margin-bottom: 12px; padding: 4px 12px;
+  border-radius: 11px; background: var(--surface-3);
+  font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--text);
+}
+.info-card h3 { font-size: 22px; margin-bottom: 8px; }
+.info-card p  { margin: 0; font-size: 15px; }
+
+.prose { max-width: 780px; }
+.prose h2 { font-size: 26px; margin: 36px 0 12px; }
+.prose h2:first-child { margin-top: 0; }
+.prose p, .prose li { font-size: 16px; }
+.prose ul { padding-left: 22px; }
+.prose a { color: var(--teal); text-decoration: underline; }
+.prose .note {
+  padding: 14px 18px; margin: 20px 0;
+  border-left: 4px solid var(--teal); border-radius: 0 12px 12px 0;
+  background: var(--surface-2); font-size: 14px;
+}
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+.contact-list { display: grid; gap: 14px; }
+.contact-item {
+  display: flex; gap: 16px; align-items: center;
+  padding: 18px 20px;
+  background: var(--surface); border: 1px solid var(--border-c); border-radius: 10px;
+}
+.contact-item__icon {
+  flex: 0 0 auto; width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--surface-3); color: var(--teal);
+}
+.contact-item__icon svg { width: 22px; height: 22px; }
+.contact-item small { display: block; color: var(--teal); font-size: 13px; }
+.contact-item a, .contact-item strong { font-size: 18px; font-weight: 600; color: var(--text-strong); }
+.contact-item a:hover { color: var(--teal); }
+
+.cb-form {
+  padding: 28px;
+  background: var(--surface); border: 1px solid var(--teal); border-radius: 13px;
+  box-shadow: var(--shadow);
+  display: grid; gap: 6px;
+}
+.cb-form h2 { font-size: 24px; margin-bottom: 4px; }
+.cb-form > p { margin: 0 0 8px; font-size: 14px; color: var(--teal); }
+.cb-form label { font-size: 14px; font-weight: 500; margin-top: 8px; }
+.cb-form input[type=text], .cb-form input[type=tel], .cb-form textarea {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid var(--border-c); border-radius: 9px;
+  font: inherit; color: var(--text); background: var(--surface);
+}
+.cb-form textarea { min-height: 84px; resize: vertical; }
+.cb-form input:focus, .cb-form textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(20,163,161,.15); }
+.cb-form .input-error { border-color: #c0392b; }
+.cb-form .btn { width: 100%; margin-top: 12px; padding-top: 14px; padding-bottom: 14px; }
+.cb-error { min-height: 18px; color: #c0392b; font-size: 14px; }
+.cb-ok { color: #2f855a; font-weight: 500; }
+.cb-hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+
+.program { display: grid; gap: 14px; counter-reset: p; }
+.program li {
+  list-style: none; counter-increment: p; position: relative;
+  padding: 18px 20px 18px 66px;
+  background: var(--surface); border: 1px solid var(--border-c); border-radius: 10px;
+}
+.program li::before {
+  content: counter(p);
+  position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--teal); color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 17px;
+}
+.program strong { display: block; color: var(--text-strong); }
+.program span { font-size: 15px; }
+ul.program { padding: 0; margin: 0; }
+
+@media (max-width: 960px) {
+  .cards-3, .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ====================== КАРТА «ГДЕ МЫ НАХОДИМСЯ» ====================== */
+.location__kicker { margin: 0 0 6px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); }
+.location__title { margin: 0 0 8px; color: var(--teal); }
+.location__address { margin: 0 0 20px; }
+.map-block { border: 2px solid var(--teal); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.map-block iframe { display: block; width: 100%; height: 380px; border: 0; }
+.location__link { margin: 14px 0 0; font-size: 14px; }
+.location__link a { color: var(--teal); text-decoration: underline; }
+@media (max-width: 640px) { .map-block iframe { height: 300px; } }

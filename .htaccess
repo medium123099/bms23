@@ -1,0 +1,19 @@
+# Положите этот файл в КОРЕНЬ сайта под именем .htaccess
+# Убирает .html из адресов: /index.html -> /, /catalog.html -> /catalog и т.д.
+
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\s/([^\s?]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^.]+)$ $1.html [L]
+</IfModule>
